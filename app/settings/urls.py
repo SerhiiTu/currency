@@ -16,11 +16,31 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from currency.views import rate_list, contactus_list
+from currency.views import (rate_list,
+                            contactus_list,
+                            source_list,
+                            rate_create,
+                            rate_retrieve,
+                            rate_update,
+                            rate_delete,
+                            source_create,
+                            source_retrieve,
+                            source_update,
+                            source_delete,
+                            )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('rate/list/', rate_list),
     path('contactus/list/', contactus_list),
+    path('source/list/', source_list),
+    path('rate/create/', rate_create),
+    path('rate/retrieve/<int:pk>/', rate_retrieve),
+    path('rate/update/<int:pk>/', rate_update),
+    path('rate/delete/<int:pk>/', rate_delete),
+    path('source/create/', source_create),
+    path('source/retrieve/<int:pk>/', source_retrieve),
+    path('source/update/<int:pk>/', source_update),
+    path('source/delete/<int:pk>/', source_delete),
 
 ]
