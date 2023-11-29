@@ -11,14 +11,15 @@
     <th style="background-color: yellow">ID</th>
     <th style="background-color: yellow">FROM</th>
     <th style="background-color: yellow">SUBJECT</th>
-    <th style="background-color: yellow">MESSAGE</th>
   </tr>
-       {% for message in messages %}
+       {% for message in contactus_list %}
   <tr>
     <td>{{message.id}}</td>
     <td>{{message.email_from}}</td>
     <td>{{message.subject}}</td>
-    <td>{{message.message}}</td>
+      <td><a href="{% url 'contactus-update' message.id %}">Update</a></td>
+    <td><a href="{% url 'contactus-delete' message.id %}">Delete</a></td>
+    <td><a href="{% url 'contactus-retrieve' message.id %}">Details</a></td>
   </tr>
         {% endfor %}
 </table>

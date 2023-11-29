@@ -12,14 +12,14 @@
     <th style="background-color: yellow">NAME</th>
     <th style="background-color: yellow">TYPE</th>
   </tr>
-       {% for source in sources %}
+       {% for source in source_list %}
   <tr>
     <td>{{source.id}}</td>
     <td>{{source.name}}</td>
     <td>{{source.source_type}}</td>
-    <td><a href="/source/update/{{source.id}}/">Update</a></td>
-    <td><a href="/source/delete/{{source.id}}/">Delete</a></td>
-    <td><a href="/source/retrieve/{{source.id}}/">Details</a></td>
+    <td><a href="{% url 'source-update' source.id %}">Update</a></td>
+    <td><a href="{% url 'source-delete' source.id %}">Delete</a></td>
+    <td><a href="{% url 'source-retrieve' source.id %}">Details</a></td>
 
   </tr>
         {% endfor %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete ContactUs{% endblock title %}
+
+
+{% block content %}
+
+You are deleting rate with id = {{contactus.id}}
+</br>
+
+<form method="post">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+
+</form>
+
+{% endblock content %}
