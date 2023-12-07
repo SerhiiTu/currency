@@ -25,7 +25,8 @@ class SourceForm(forms.ModelForm):
 class ContactUsForm(forms.ModelForm):
     class Meta:
         model = ContactUs
-        fields = ('email_from',
+        fields = ('name',
+                  'email_from',
                   'subject',
                   'message',
                   )
