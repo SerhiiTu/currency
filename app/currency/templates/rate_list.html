@@ -17,7 +17,7 @@
        {% for rate in rate_list %}
   <tr>
     <td>{{rate.id}}</td>
-    <td>{{rate.rate_type}}</td>
+    <td>{{ rate.get_rate_type_display }}</td>
     <td>{{rate.buy}}</td>
     <td>{{rate.sell}}</td>
     <td>{{rate.source}}</td>
