@@ -1,6 +1,7 @@
 from django import forms
 
 from currency.models import Rate, Source, ContactUs
+from django.contrib.auth import get_user_model
 
 
 class RateForm(forms.ModelForm):
@@ -30,3 +31,12 @@ class ContactUsForm(forms.ModelForm):
                   'subject',
                   'message',
                   )
+
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = get_user_model()
+        fields = (
+            'first_name',
+            'last_name',
+                )

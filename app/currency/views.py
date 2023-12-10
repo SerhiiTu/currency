@@ -1,8 +1,10 @@
 from currency.models import Rate, ContactUs, Source
-from currency.forms import RateForm, SourceForm, ContactUsForm
+from currency.forms import RateForm, SourceForm, ContactUsForm, UserForm
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView, TemplateView
 from django.urls import reverse_lazy
 from django.core.mail import send_mail
+from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 
 class RateListView(ListView):
@@ -64,11 +66,14 @@ class SourceCreateView(CreateView):
     success_url = reverse_lazy("source-list")
 
 
-class RateUpdateView(UpdateView):
+class RateUpdateView(UserPassesTestMixin, UpdateView):
     model = Rate
     form_class = RateForm
     template_name = 'rate_create.html'
     success_url = reverse_lazy("rate-list")
+
+    def test_func(self):
+        return self.request.user.is_superuser
 
 
 class ContactUsUpdateView(UpdateView):
@@ -85,10 +90,13 @@ class SourceUpdateView(UpdateView):
     model = Source
 
 
-class RateDeleteView(DeleteView):
+class RateDeleteView(UserPassesTestMixin, DeleteView):
     model = Rate
     template_name = 'rate_delete.html'
     success_url = reverse_lazy("rate-list")
+
+    def test_func(self):
+        return self.request.user.is_superuser
 
 
 class ContactUsDeleteView(DeleteView):
@@ -103,7 +111,7 @@ class SourceDeleteView(DeleteView):
     success_url = reverse_lazy("source-list")
 
 
-class RateDetailView(DetailView):
+class RateDetailView(LoginRequiredMixin, DetailView):
     model = Rate
     template_name = 'rate_retrieve.html'
 
@@ -120,3 +128,15 @@ class SourceDetailView(DetailView):
 
 class IndexView(TemplateView):
     template_name = "index.html"
+
+
+class ProfileView(LoginRequiredMixin, UpdateView):
+    model = get_user_model()
+    form_class = UserForm
+    template_name = 'profile.html'
+    success_url = reverse_lazy('index')
+
+    def get_object(self, queryset=None):
+        qs = self.get_queryset()
+
+        return qs.get(id=self.request.user.id)
