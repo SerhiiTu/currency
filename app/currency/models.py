@@ -17,6 +17,7 @@ class Rate(models.Model):
 
 
 class ContactUs(models.Model):
+    name = models.CharField(max_length=255)
     email_from = models.EmailField(max_length=254)
     subject = models.CharField(max_length=255)
     message = models.TextField()
@@ -26,3 +27,9 @@ class Source(models.Model):
     source_url = models.CharField(max_length=255)
     name = models.CharField(max_length=64)
     source_type = models.CharField(max_length=50)  # bank, exchanger, etc...
+
+
+class RequestResponseLog(models.Model):
+    path = models.CharField(max_length=255)
+    request_method = models.CharField(max_length=8)
+    time = models.DecimalField(max_digits=16, decimal_places=3)

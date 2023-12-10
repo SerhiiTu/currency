@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from currency.models import Rate, Source, ContactUs
+from currency.models import Rate, Source, ContactUs, RequestResponseLog
 
 
 @admin.register(Rate)
@@ -38,6 +38,7 @@ class SourceAdmin(admin.ModelAdmin):
 class ContactUsAdmin(admin.ModelAdmin):
     list_display = (
         "id",
+        "name",
         "email_from",
         "subject",
         "message",
@@ -51,3 +52,13 @@ class ContactUsAdmin(admin.ModelAdmin):
 
     def has_change_permission(self, request, obj=None):
         return False
+
+
+@admin.register(RequestResponseLog)
+class RequestResponseLogAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "path",
+        "request_method",
+        "time",
+    )
