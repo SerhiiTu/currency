@@ -20,6 +20,10 @@ from currency.views import IndexView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    path('auth/', include('django.contrib.auth.urls')),
+
     path('currency/', include("currency.urls")),
-    path('', IndexView.as_view()),
+
+    path('', IndexView.as_view(), name='index'),
                 ]
