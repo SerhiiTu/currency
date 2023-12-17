@@ -3,12 +3,10 @@ from django.urls import path
 from currency.views import (
     RateListView, ContactUsListView, SourceListView, RateCreateView, ContactUsCreateView, SourceCreateView,
     RateUpdateView, ContactUsUpdateView, SourceUpdateView, RateDeleteView, ContactUsDeleteView, SourceDeleteView,
-    RateDetailView, ContactUsDetailView, SourceDetailView, ProfileView,
+    RateDetailView, ContactUsDetailView, SourceDetailView,
                             )
 
 urlpatterns = [
-    path('auth/profile/', ProfileView.as_view(), name='profile'),
-
     path('rate/list/', RateListView.as_view(), name='rate-list'),
     path('contactus/list/', ContactUsListView.as_view(), name='contactus-list'),
     path('source/list/', SourceListView.as_view(), name='source-list'),

@@ -1,9 +1,9 @@
 from currency.models import Rate, ContactUs, Source
-from currency.forms import RateForm, SourceForm, ContactUsForm, UserForm
+from currency.forms import RateForm, SourceForm, ContactUsForm
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView, TemplateView
 from django.urls import reverse_lazy
 from django.core.mail import send_mail
-from django.contrib.auth import get_user_model
+
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 
@@ -128,15 +128,3 @@ class SourceDetailView(DetailView):
 
 class IndexView(TemplateView):
     template_name = "index.html"
-
-
-class ProfileView(LoginRequiredMixin, UpdateView):
-    model = get_user_model()
-    form_class = UserForm
-    template_name = 'profile.html'
-    success_url = reverse_lazy('index')
-
-    def get_object(self, queryset=None):
-        qs = self.get_queryset()
-
-        return qs.get(id=self.request.user.id)

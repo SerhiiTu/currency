@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django_extensions',
 
     'currency',
+    'account',
 ]
 
 MIDDLEWARE = [
@@ -112,6 +113,8 @@ USE_I18N = True
 
 USE_TZ = True
 
+AUTH_USER_MODEL = 'account.User'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
@@ -128,3 +131,5 @@ DEFAULT_FROM_EMAIL = 'ProgrammingTestMail@gmail.com'
 LOGIN_REDIRECT_URL = reverse_lazy('index')
 LOGIN_URL = reverse_lazy('login')
 LOGOUT_REDIRECT_URL = reverse_lazy('index')
+HTTP_METHOD = 'http'
+DOMAIN = '127.0.0.1:8000'
