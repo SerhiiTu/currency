@@ -9,7 +9,7 @@ class Rate(models.Model):
     rate_type = models.SmallIntegerField(
         choices=CurrencyTypeChoices.choices,
     )
-    source = models.CharField(max_length=255)
+    source = models.ForeignKey('currency.Source', on_delete=models.CASCADE, related_name='rates')
     created = models.DateTimeField(auto_now=True)
 
     def __str__(self):
@@ -27,6 +27,9 @@ class Source(models.Model):
     source_url = models.CharField(max_length=255)
     name = models.CharField(max_length=64)
     source_type = models.CharField(max_length=50)  # bank, exchanger, etc...
+
+    def __str__(self):
+        return self.name
 
 
 class RequestResponseLog(models.Model):
