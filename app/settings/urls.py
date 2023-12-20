@@ -24,6 +24,7 @@ urlpatterns = [
     path('auth/', include('django.contrib.auth.urls')),
 
     path('currency/', include("currency.urls")),
+    path('auth/', include("account.urls")),
 
     path('', IndexView.as_view(), name='index'),
                 ]

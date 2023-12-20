@@ -12,5 +12,6 @@
         <a href="{% url 'logout' %}" style="background-color: white">Logout</a>
     {% elif  request.user.is_anonymous %}
         <a href="{% url 'login' %}" style="background-color: white">Login</a>
+        <a href="{% url 'signup' %}" style="background-color: white">SignUp</a>
     {% endif %}
 <p>
