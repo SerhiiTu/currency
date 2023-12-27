@@ -6,14 +6,16 @@
 
 {% block content %}
 
-    <table>
-  <tr>
-    <th style="background-color: yellow">ID</th>
-    <th style="background-color: yellow">TYPE</th>
-    <th style="background-color: yellow">BUY</th>
-    <th style="background-color: yellow">SELL</th>
-    <th style="background-color: yellow">SOURCE</th>
-  </tr>
+<div class="row">
+<table class="table">
+  <thead class="thead-dark">
+    <th>ID</th>
+    <th>TYPE</th>
+    <th>BUY</th>
+    <th>SELL</th>
+    <th>SOURCE</th>
+    <th>TOOLS</th>
+  </thead>
        {% for rate in object_list %}
   <tr>
     <td>{{rate.id}}</td>
@@ -21,15 +23,40 @@
     <td>{{rate.buy}}</td>
     <td>{{rate.sell}}</td>
     <td>{{rate.source.name}}</td>
+
     {% if request.user.is_superuser %}
-      <td><a href="{% url 'rate-update' rate.id %}">Update</a></td>
-      <td><a href="{% url 'rate-delete' rate.id %}">Delete</a></td>
+      <td><div class="dropdown">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+        Edit
+        </a>
+
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{% url 'rate-update' rate.id %}">Update</a>
+          <a class="dropdown-item" href="{% url 'rate-delete' rate.id %}">Delete</a>
+          <a class="dropdown-item" href="{% url 'rate-retrieve' rate.id %}">Details</a>
+        </div>
+
+      </div></td>
     {% endif %}
-    {% if request.user.is_authenticated %}
-      <td><a href="{% url 'rate-retrieve' rate.id %}">Details</a></td>
+
+    {% if request.user.is_authenticated and not request.user.is_superuser %}
+      <td><div class="dropdown">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+        Edit
+        </a>
+
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{% url 'rate-retrieve' rate.id %}">Details</a>
+        </div>
+      </div></td>
+    {% endif %}
+
+    {% if not user.is_authenticated %}
+      <td>available only for registered users</td>
     {% endif %}
   </tr>
         {% endfor %}
 </table>
+</div>
 
 {% endblock content %}

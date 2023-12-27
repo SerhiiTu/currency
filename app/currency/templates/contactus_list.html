@@ -6,13 +6,15 @@
 
 {% block content %}
 
-    <table>
-  <tr>
-    <th style="background-color: yellow">ID</th>
-      <th style="background-color: yellow">NAME</th>
-    <th style="background-color: yellow">FROM</th>
-    <th style="background-color: yellow">SUBJECT</th>
-  </tr>
+<div class="row">
+<table class="table">
+    <thead class="thead-dark">
+        <th>ID</th>
+        <th>NAME</th>
+        <th>FROM</th>
+        <th>SUBJECT</th>
+        <th>TOOLS</th>
+    </thead>
        {% for message in contactus_list %}
   <tr>
     <td>{{message.id}}</td>
@@ -25,5 +27,6 @@
   </tr>
         {% endfor %}
 </table>
+</div>
 
 {% endblock content %}

@@ -1,13 +1,21 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Delete Rate{% endblock title %}
 
 
 {% block content %}
 
-ID = {{source.id}}</br>
-NAME = {{source.name}}</br>
-TYPE = {{source.source_type}}</br>
-URL = {{source.source_url}}</br>
+<h1>ID = {{source.id}}</h1>
+
+{% if source.logo %}
+    <img style="height: 100px; width: 100px" src="{{ source.logo.url }}">
+{% else %}
+    <img style="height: 100px; width: 100px" src="{% static 'unknown-bank.png' %}">
+{% endif %}
+
+<h1>NAME = {{source.name}}</h1>
+<h1>TYPE = {{source.source_type}}</h1>
+<h1>URL = {{source.source_url}}</h1>
 
 {% endblock content %}

@@ -16,10 +16,12 @@ class RateForm(forms.ModelForm):
 class SourceForm(forms.ModelForm):
     class Meta:
         model = Source
-        fields = ('name',
-                  'source_type',
-                  'source_url',
-                  )
+        fields = (
+            'logo',
+            'name',
+            'source_type',
+            'source_url',
+        )
 
 
 class ContactUsForm(forms.ModelForm):

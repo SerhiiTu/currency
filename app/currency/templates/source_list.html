@@ -6,13 +6,15 @@
 
 {% block content %}
 
-    <table>
-  <tr>
-    <th style="background-color: yellow">ID</th>
-    <th style="background-color: yellow">NAME</th>
-    <th style="background-color: yellow">TYPE</th>
-  </tr>
+<div class="row">
+<table class="table">
+    <thead class="thead-dark">
+        <th>ID</th>
+        <th>NAME</th>
+        <th>TYPE</th>
+        <th>TOOLS</th>
        {% for source in source_list %}
+    </thead>
   <tr>
     <td>{{source.id}}</td>
     <td>{{source.name}}</td>
@@ -24,5 +26,6 @@
   </tr>
         {% endfor %}
 </table>
+</div>
 
 {% endblock content %}

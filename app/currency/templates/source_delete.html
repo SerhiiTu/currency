@@ -1,19 +1,18 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block title %}Delete Source{% endblock title %}
 
 
 {% block content %}
 
-You are deleting source with id = {{source.id}}
-</br>
+<h1>You are deleting source with id = {{source.id}}</h1>
 
 <form method="post">
-
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
-
+    {{ form|crispy }}
+    <button class="btn btn-primary" type="submit">Submit</button>
+    <h1></h1>
 </form>
 
 {% endblock content %}
