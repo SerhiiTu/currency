@@ -1,15 +1,23 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
 
 {% block title %}Update Source{% endblock title %}
 
 
 {% block content %}
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
+{% if source.logo %}
+    <img style="height: 100px; width: 100px" src="{{ source.logo.url }}">
+{% else %}
+    <img style="height: 100px; width: 100px" src="{% static 'unknown-bank.png' %}">
+{% endif %}
 
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button class="btn btn-primary" type="submit">Submit</button>
+    <h1></h1>
 </form>
 
 {% endblock content %}

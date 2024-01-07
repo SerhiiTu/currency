@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
 
 {% block title %}
     Profile
@@ -6,15 +8,19 @@
 
 {% block content %}
 
-Your Profile
+<h1>Your Profile</h1>
 
-<form method="post">
+{% if user.avatar %}
+    <img style="height: 100px; width: 100px" src="{{ user.avatar.url }}">
+{% else %}
+    <img style="height: 100px; width: 100px" src="{% static 'anonymous-user.png' %}">
+{% endif %}
 
+<form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
-
-    <button type="submit">Update</button>
-
+    {{ form|crispy }}
+    <button class="btn btn-primary" type="submit">Update</button>
+    <h1></h1>
 </form>
 
 

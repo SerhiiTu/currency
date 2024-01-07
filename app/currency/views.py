@@ -85,7 +85,7 @@ class ContactUsUpdateView(UpdateView):
 
 class SourceUpdateView(UpdateView):
     form_class = SourceForm
-    template_name = 'source_create.html'
+    template_name = 'source_update.html'
     success_url = reverse_lazy("source-list")
     model = Source
 

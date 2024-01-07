@@ -6,3 +6,6 @@ ipython
 flake8
 flake8-builtins
 flake8-print
+
+django-crispy-forms
+crispy-bootstrap4
