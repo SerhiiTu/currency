@@ -34,7 +34,6 @@ class ContactUsCreateView(CreateView):
     success_url = reverse_lazy("contactus-list")
 
     def _send_email(self):
-        from django.conf import settings
         subject = "User contact Us"
         body = f'''
                 Name: {self.object.name}

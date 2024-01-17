@@ -1,4 +1,3 @@
-from decimal import Decimal, ROUND_DOWN
 from celery import shared_task
 from django.conf import settings
 import requests
@@ -7,7 +6,6 @@ from currency.constants import PRIVATBANK_CODE_NAME, MONOBANK_CODE_NAME, HRYVNIA
 from currency.models import Rate, Source
 from currency.choices import CurrencyTypeChoices
 from currency.utils import to_2_places_decimal
-from decimal import Decimal, ROUND_DOWN
 from django.core.mail import send_mail
 
 
@@ -28,7 +26,7 @@ def parse_privatbank():
     response = requests.get(url)
     response.raise_for_status()
 
-    source, _ = Source.objects.get_or_create(code_name=MONOBANK_CODE_NAME, defaults={'name': 'MonoBank'})
+    source, _ = Source.objects.get_or_create(code_name=PRIVATBANK_CODE_NAME, defaults={'name': 'MonoBank'})
 
     rates = response.json()
 
