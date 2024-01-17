@@ -2,9 +2,9 @@ from currency.models import Rate, ContactUs, Source
 from currency.forms import RateForm, SourceForm, ContactUsForm
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView, TemplateView
 from django.urls import reverse_lazy
-from django.core.mail import send_mail
 
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from currency.tasks import send_mail_in_background
 
 
 class RateListView(ListView):
@@ -35,7 +35,6 @@ class ContactUsCreateView(CreateView):
 
     def _send_email(self):
         from django.conf import settings
-        recipient = settings.DEFAULT_FROM_EMAIL
         subject = "User contact Us"
         body = f'''
                 Name: {self.object.name}
@@ -44,13 +43,7 @@ class ContactUsCreateView(CreateView):
                 Message: {self.object.message}
                 '''
 
-        send_mail(
-            subject,
-            body,
-            recipient,
-            [recipient],
-            fail_silently=False,
-        )
+        send_mail_in_background(subject, body)  # поки вимкнув
 
     def form_valid(self, form):
         redirect = super().form_valid(form)
