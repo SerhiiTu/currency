@@ -6,27 +6,44 @@
 
 {% block content %}
 
-<div class="row">
-<table class="table">
-    <thead class="thead-dark">
-        <th>ID</th>
-        <th>NAME</th>
-        <th>FROM</th>
-        <th>SUBJECT</th>
-        <th>TOOLS</th>
-    </thead>
-       {% for message in contactus_list %}
-  <tr>
-    <td>{{message.id}}</td>
-    <td>{{message.name}}</td>
-    <td>{{message.email_from}}</td>
-    <td>{{message.subject}}</td>
-      <td><a href="{% url 'contactus-update' message.id %}">Update</a></td>
-    <td><a href="{% url 'contactus-delete' message.id %}">Delete</a></td>
-    <td><a href="{% url 'contactus-retrieve' message.id %}">Details</a></td>
-  </tr>
-        {% endfor %}
-</table>
-</div>
+    <div class="row">
+        <div class="col-12">
+            <form method="get">
+                <h1></h1>
+                {{ filter.form.as_p }}
+                <button class="btn btn-primary" type="submit">Filter</button>
+                <h1></h1>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <table class="table">
+            <thead class="thead-dark">
+            <th>ID</th>
+            <th>NAME</th>
+            <th>FROM</th>
+            <th>SUBJECT</th>
+            <th>TOOLS</th>
+            </thead>
+            {% for message in contactus_list %}
+                <tr>
+                    <td>{{ message.id }}</td>
+                    <td>{{ message.name }}</td>
+                    <td>{{ message.email_from }}</td>
+                    <td>{{ message.subject }}</td>
+                    <td><a href="{% url 'contactus-update' message.id %}">Update</a></td>
+                    <td><a href="{% url 'contactus-delete' message.id %}">Delete</a></td>
+                    <td><a href="{% url 'contactus-retrieve' message.id %}">Details</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            {% include 'includes/pagination.html' %}
+        </div>
+    </div>
 
 {% endblock content %}
