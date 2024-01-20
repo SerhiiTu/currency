@@ -31,6 +31,7 @@ class ContactUs(models.Model):
 class Source(models.Model):
     source_url = models.CharField(max_length=255)
     name = models.CharField(max_length=64)
+    code_name = models.CharField(max_length=64, unique=True)
     source_type = models.CharField(max_length=50)  # bank, exchanger, etc...
     logo = models.FileField(default=None, null=True, blank=True, upload_to=user_directory_path)
 

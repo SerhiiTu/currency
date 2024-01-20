@@ -9,3 +9,4 @@ flake8-print
 
 django-crispy-forms
 crispy-bootstrap4
+Celery
