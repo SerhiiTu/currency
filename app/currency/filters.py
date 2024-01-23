@@ -17,10 +17,10 @@ class ContactUsFilter(django_filters.FilterSet):
     class Meta:
         model = ContactUs
         fields = {
-            'name': ['contains'],
-            'email_from': ['startswith'],
-            'subject': ['contains'],
-            'message': ['contains'],
+            'name': ['contains', 'exact'],
+            'email_from': ['startswith', 'exact'],
+            'subject': ['contains', 'exact'],
+            'message': ['contains', 'exact'],
         }
 
 
@@ -28,7 +28,7 @@ class SourceFilter(django_filters.FilterSet):
     class Meta:
         model = Source
         fields = {
-            'name': ['contains'],
+            'name': ['contains', 'exact'],
             'source_type': ['exact'],
-            'source_url': ['contains'],
+            'source_url': ['contains', 'exact'],
         }
