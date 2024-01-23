@@ -5,27 +5,43 @@
 {% endblock title %}
 
 {% block content %}
+    <div class="row">
+        <div class="col-12">
+            <form method="get">
+                <h1></h1>
+                {{ filter.form.as_p }}
+                <button class="btn btn-primary" type="submit">Filter</button>
+                <h1></h1>
+            </form>
+        </div>
+    </div>
 
-<div class="row">
-<table class="table">
-    <thead class="thead-dark">
-        <th>ID</th>
-        <th>NAME</th>
-        <th>TYPE</th>
-        <th>TOOLS</th>
-       {% for source in source_list %}
-    </thead>
-  <tr>
-    <td>{{source.id}}</td>
-    <td>{{source.name}}</td>
-    <td>{{source.source_type}}</td>
-    <td><a href="{% url 'source-update' source.id %}">Update</a></td>
-    <td><a href="{% url 'source-delete' source.id %}">Delete</a></td>
-    <td><a href="{% url 'source-retrieve' source.id %}">Details</a></td>
+    <div class="row">
+        <table class="table">
+            <thead class="thead-dark">
+            <th>ID</th>
+            <th>NAME</th>
+            <th>TYPE</th>
+            <th>TOOLS</th>
+            {% for source in source_list %}
+                </thead>
+                <tr>
+                    <td>{{ source.id }}</td>
+                    <td>{{ source.name }}</td>
+                    <td>{{ source.source_type }}</td>
+                    <td><a href="{% url 'source-update' source.id %}">Update</a></td>
+                    <td><a href="{% url 'source-delete' source.id %}">Delete</a></td>
+                    <td><a href="{% url 'source-retrieve' source.id %}">Details</a></td>
 
-  </tr>
-        {% endfor %}
-</table>
-</div>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            {% include 'includes/pagination.html' %}
+        </div>
+    </div>
 
 {% endblock content %}

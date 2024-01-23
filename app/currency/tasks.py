@@ -26,7 +26,7 @@ def parse_privatbank():
     response = requests.get(url)
     response.raise_for_status()
 
-    source, _ = Source.objects.get_or_create(code_name=PRIVATBANK_CODE_NAME, defaults={'name': 'MonoBank'})
+    source, _ = Source.objects.get_or_create(code_name=PRIVATBANK_CODE_NAME, defaults={'name': 'PrivatBank'})
 
     rates = response.json()
 

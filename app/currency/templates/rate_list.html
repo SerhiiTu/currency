@@ -1,62 +1,85 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
 {% block title %}
     Rate List
 {% endblock title %}
 
 {% block content %}
-
-<div class="row">
-<table class="table">
-  <thead class="thead-dark">
-    <th>ID</th>
-    <th>TYPE</th>
-    <th>BUY</th>
-    <th>SELL</th>
-    <th>SOURCE</th>
-    <th>TOOLS</th>
-  </thead>
-       {% for rate in object_list %}
-  <tr>
-    <td>{{rate.id}}</td>
-    <td>{{ rate.get_rate_type_display }}</td>
-    <td>{{rate.buy}}</td>
-    <td>{{rate.sell}}</td>
-    <td>{{rate.source.name}}</td>
-
-    {% if request.user.is_superuser %}
-      <td><div class="dropdown">
-        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-        Edit
-        </a>
-
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="{% url 'rate-update' rate.id %}">Update</a>
-          <a class="dropdown-item" href="{% url 'rate-delete' rate.id %}">Delete</a>
-          <a class="dropdown-item" href="{% url 'rate-retrieve' rate.id %}">Details</a>
+    <div class="row">
+        <div class="col-12">
+            <form method="get">
+                <h1></h1>
+                {{ filter.form.as_p }}
+                <button class="btn btn-primary" type="submit">Filter</button>
+                <h1></h1>
+            </form>
         </div>
+    </div>
 
-      </div></td>
-    {% endif %}
+    <div class="row">
+        <table class="table">
+            <thead class="thead-dark">
+            <th>ID</th>
+            <th>TYPE</th>
+            <th>BUY</th>
+            <th>SELL</th>
+            <th>SOURCE</th>
+            <th>TOOLS</th>
+            </thead>
+            {% for rate in page_obj %}
+                <tr>
+                    <td>{{ rate.id }}</td>
+                    <td>{{ rate.get_rate_type_display }}</td>
+                    <td>{{ rate.buy }}</td>
+                    <td>{{ rate.sell }}</td>
+                    <td>{{ rate.source.name }}</td>
 
-    {% if request.user.is_authenticated and not request.user.is_superuser %}
-      <td><div class="dropdown">
-        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-        Edit
-        </a>
+                    {% if request.user.is_superuser %}
+                        <td>
+                            <div class="dropdown">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                   data-toggle="dropdown" aria-expanded="false">
+                                    Edit
+                                </a>
 
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="{% url 'rate-retrieve' rate.id %}">Details</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="{% url 'rate-update' rate.id %}">Update</a>
+                                    <a class="dropdown-item" href="{% url 'rate-delete' rate.id %}">Delete</a>
+                                    <a class="dropdown-item" href="{% url 'rate-retrieve' rate.id %}">Details</a>
+                                </div>
+
+                            </div>
+                        </td>
+                    {% endif %}
+
+                    {% if request.user.is_authenticated and not request.user.is_superuser %}
+                        <td>
+                            <div class="dropdown">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                   data-toggle="dropdown" aria-expanded="false">
+                                    Edit
+                                </a>
+
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="{% url 'rate-retrieve' rate.id %}">Details</a>
+                                </div>
+                            </div>
+                        </td>
+                    {% endif %}
+
+                    {% if not user.is_authenticated %}
+                        <td>available only for registered users</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            {% include 'includes/pagination.html' %}
         </div>
-      </div></td>
-    {% endif %}
-
-    {% if not user.is_authenticated %}
-      <td>available only for registered users</td>
-    {% endif %}
-  </tr>
-        {% endfor %}
-</table>
-</div>
+    </div>
 
 {% endblock content %}
