@@ -28,5 +28,8 @@ urlpatterns = [
     path('currency/', include("currency.urls")),
     path('auth/', include("account.urls")),
 
+    path('api/currency/', include('currency.api.urls')),
+    path('api/account/', include('account.api.urls')),
+
     path('', IndexView.as_view(), name='index'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -4,7 +4,7 @@ from currency.views import (
     RateListView, ContactUsListView, SourceListView, RateCreateView, ContactUsCreateView, SourceCreateView,
     RateUpdateView, ContactUsUpdateView, SourceUpdateView, RateDeleteView, ContactUsDeleteView, SourceDeleteView,
     RateDetailView, ContactUsDetailView, SourceDetailView,
-                            )
+)
 
 urlpatterns = [
     path('rate/list/', RateListView.as_view(), name='rate-list'),

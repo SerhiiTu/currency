@@ -1,7 +1,12 @@
 django==4.2.7
 django-extensions
 django-filter
+djangorestframework
+djangorestframework-simplejwt
+drf-yasg
+
 ipython
+Celery
 
 #flake8
 flake8
@@ -10,6 +15,5 @@ flake8-print
 
 django-crispy-forms
 crispy-bootstrap4
-Celery
 
 names

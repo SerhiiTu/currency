@@ -8,6 +8,8 @@ from currency.choices import CurrencyTypeChoices
 
 class Command(BaseCommand):
 
+    help = 'Generate 500 Rate objects' # NOQA A003
+
     def handle(self, *args, **options):
         source, _ = Source.objects.get_or_create(
             code_name='dummy',

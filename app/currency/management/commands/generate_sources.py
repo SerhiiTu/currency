@@ -8,6 +8,8 @@ from currency.models import Source
 
 class Command(BaseCommand):
 
+    help = 'Generate 500 Source objects' # NOQA A003
+
     def handle(self, *args, **options):
         for _ in range(500):
             Source.objects.create(

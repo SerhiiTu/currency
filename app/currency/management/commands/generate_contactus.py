@@ -8,6 +8,8 @@ from currency.models import ContactUs
 
 class Command(BaseCommand):
 
+    help = 'Generate 500 ContactUs objects' # NOQA A003
+
     def handle(self, *args, **options):
         for _ in range(500):
             ContactUs.objects.create(
