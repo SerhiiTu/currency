@@ -1,7 +1,7 @@
 from unittest.mock import MagicMock
 
 from currency.choices import CurrencyTypeChoices
-from currency.constants import PRIVATBANK_CODE_NAME, MONOBANK_CODE_NAME
+from currency.constants import PRIVATBANK_CODE_NAME
 from currency.models import Rate, Source
 from currency.tasks import parse_privatbank, parse_monobank
 
