@@ -16,4 +16,9 @@ flake8-print
 django-crispy-forms
 crispy-bootstrap4
 
+pytest
+pytest-django
+pytest-cov
+pytest-mock
+
 names

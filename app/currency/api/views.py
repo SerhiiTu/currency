@@ -23,7 +23,7 @@ class RateViewSet(ModelViewSet):
     throttle_classes = (RateThrottle,)
 
 
-class SourceListAPIView(ListAPIView):
+class SourceViewSet(ModelViewSet):
     queryset = Source.objects.all()
     serializer_class = SourceSerializer
     pagination_class = SourcePagination
