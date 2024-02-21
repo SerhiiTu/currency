@@ -5,7 +5,7 @@ DEBUG = False
 CELERY_TASK_ALWAYS_EAGER = True
 
 CACHES = {
-    "default": {
+    "default.conf": {
         "BACKEND": "django.core.cache.backends.dummy.DummyCache",
     }
 }
