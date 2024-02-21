@@ -1,4 +1,3 @@
-from rest_framework.generics import ListAPIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
@@ -23,7 +22,7 @@ class RateViewSet(ModelViewSet):
     throttle_classes = (RateThrottle,)
 
 
-class SourceListAPIView(ListAPIView):
+class SourceViewSet(ModelViewSet):
     queryset = Source.objects.all()
     serializer_class = SourceSerializer
     pagination_class = SourcePagination

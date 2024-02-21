@@ -11,7 +11,7 @@ def user_directory_path(instance, filename):
 
 class User(AbstractUser):
     email = models.EmailField(unique=True)
-    age = models.SmallIntegerField()
+    age = models.SmallIntegerField(null=True, default=None)
     created = models.DateTimeField(auto_now=True)
     phone_number = models.CharField(max_length=32)
     avatar = models.FileField(default=None, null=True, blank=True, upload_to=user_directory_path)
